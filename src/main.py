@@ -22,6 +22,8 @@ def create_account():
 def get_account_details(acc_num):
     items = actions.get_account_details(acc_num)
     print(items)
+    if items == {}:
+        return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 
@@ -40,6 +42,8 @@ def deposit_amount():
     amount = request_data["amount"]
     items = actions.deposite_amount(acc_no, amount)
     print(items)
+    if items == {}:
+        return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 @app.route('/Deposit/Get', methods = ['POST'])
@@ -48,6 +52,16 @@ def get_all_deposit_amount():
     acc_no = request_data["accountNum"]
     items = actions.get_deposite_amount(acc_no)
     print(items)
+    return Response(json.dumps(items), mimetype='application/json', status=200)
+
+@app.route('/Delete', methods = ['POST'])
+def delete_user():
+    request_data = request.get_json()
+    acc_no = request_data["accountNum"]
+    items = actions.delete_user(acc_no)
+    print(items)
+    if items == {}:
+        return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 

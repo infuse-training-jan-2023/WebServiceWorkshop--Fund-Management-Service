@@ -81,3 +81,11 @@ class Actions:
         except Exception as e:
             print(e)
             return {}
+
+    def delete_user(self, bank_acc_no):
+        try:
+            items = self.item_repo.delete_user(bank_acc_no)
+            return items
+        except Exception as e:
+            print(e)
+            return{}

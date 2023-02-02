@@ -3,6 +3,7 @@ import sqlite3
 class Repository:
     DBPATH = './todo.db'
     Balance = 0
+    status = False
 
     @staticmethod
     def connect_db():
@@ -33,7 +34,7 @@ class Repository:
         try:
             conn = Repository.connect_db()
             c = conn.cursor()
-            rows = c.execute('select * from Accounts where accountNum=?',(bank_acc_no,))
+            rows = c.execute('select * from Accounts where status=true accountNum=?',(bank_acc_no,))
             print("Rows Value: " ,rows)
             return rows
         except Exception as e:
@@ -44,7 +45,7 @@ class Repository:
         try:
             conn = Repository.connect_db()
             c = conn.cursor()
-            rows = c.execute('select * from Accounts')
+            rows = c.execute('select * from Accounts where status=true')
             print("Rows Value: " ,rows)
             return rows
         except Exception as e:
@@ -83,21 +84,20 @@ class Repository:
             raise Exception('Error: ', e)
 
 
-    # @staticmethod
-    # def create_loan_acc(loan_given, time_period, ints_rate, bank_acc_no):
-    #     try:
-    #         conn = Repository.connect_db()
-    #         c = conn.cursor()
-    #         insert_cursor = c.execute('insert into loans (Loan_Amount, Time_Period, Interest_Rate, Bank Account Number) VALUES (?,?,?,?)',
-    #         (loan_given, time_period, ints_rate, bank_acc_no))
-    #         conn.commit()
-    #         return
-    #         {
-    #             'Id': insert_cursor.lastrowid,
-    #             'Loan_Amount': loan_given,
-    #             'Time_Period': time_period,
-    #             'Interest_Rate': ints_rate,
-    #             'Bank Account Number': bank_acc_no
-    #         }
-    #     except Exception as e:
-    #         raise Exception('Error: ', e)
+    @staticmethod
+    def delete_user(bank_acc_no):
+        try:
+            conn = Repository.connect_db()
+            c = conn.cursor()
+            fetch_status = c.execute('select status from Accounts where accaccountNum=?', (bank_acc_no, ))
+            if fetch_status == 0:
+                raise TypeError("Account Dosen't Exist")
+            rows = c.execute('UPDATE Accounts SET status=? WHERE accountNum=?', (0, bank_acc_no, ))
+            conn.commit()
+            return{
+                'Bank_Account_Number': bank_acc_no,
+                'status': False
+            }
+        except Exception as e:
+            raise Exception('Error: ', e)
+
