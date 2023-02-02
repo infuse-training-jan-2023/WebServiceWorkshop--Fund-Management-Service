@@ -26,14 +26,11 @@ def get_account_details(acc_num):
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
-
-
 @app.route('/Account/All', methods = ['GET'])
 def get_all_account_details():
     items = actions.get_all_account_details()
     print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
-
 
 @app.route('/Deposit', methods = ['POST'])
 def deposit_amount():
