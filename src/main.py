@@ -43,12 +43,10 @@ def deposit_amount():
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
-@app.route('/Deposit/Get', methods = ['POST'])
-def get_all_deposit_amount():
-    request_data = request.get_json()
-    acc_no = request_data["accountNum"]
-    items = actions.get_deposite_amount(acc_no)
-    print(items)
+@app.route('/Deposit/Get/<int:acc_num>', methods = ['GET'])
+def get_all_deposit_amount(acc_num):
+    items = actions.get_deposite_amount(acc_num)
+    # print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 @app.route('/Delete', methods = ['POST'])
