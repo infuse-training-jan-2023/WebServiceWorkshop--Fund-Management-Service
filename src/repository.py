@@ -34,7 +34,7 @@ class Repository:
         try:
             conn = Repository.connect_db()
             c = conn.cursor()
-            rows = c.execute('select * from Accounts where status=true accountNum=?',(bank_acc_no,))
+            rows = c.execute('select * from Accounts where status=true AND accountNum=?',(bank_acc_no, ))
             print("Rows Value: " ,rows)
             return rows
         except Exception as e:
@@ -89,7 +89,7 @@ class Repository:
         try:
             conn = Repository.connect_db()
             c = conn.cursor()
-            fetch_status = c.execute('select status from Accounts where accaccountNum=?', (bank_acc_no, ))
+            fetch_status = c.execute('select status from Accounts where accountNum=?', (bank_acc_no, ))
             if fetch_status == 0:
                 raise TypeError("Account Dosen't Exist")
             rows = c.execute('UPDATE Accounts SET status=? WHERE accountNum=?', (0, bank_acc_no, ))
