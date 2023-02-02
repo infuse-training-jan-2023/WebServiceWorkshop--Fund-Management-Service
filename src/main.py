@@ -6,6 +6,7 @@ import json
 app = Flask(__name__)
 item_actions = Actions()
 item_repository = Repository()
+actions = Actions()
 
 @app.route('/', methods = ['GET'])
 def welcome():
