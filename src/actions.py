@@ -59,3 +59,25 @@ class Actions:
         except Exception as e:
             print(e)
             return {}
+
+    def get_deposite_amount(self, bank_acc_no):
+        try:
+            item = self.item_repo.get_deposite_amount(bank_acc_no)
+            res = []
+            res.append({"Account number": bank_acc_no})
+            sum = 0
+
+            for items in item:
+                sum += items[1]
+                res.append(
+                    {
+                        "depositID": items[0],
+                        "depositAmount": items[1]
+                    }
+                )
+            print(res)
+            res.append({"Sum of Deposits": sum })
+            return res
+        except Exception as e:
+            print(e)
+            return {}

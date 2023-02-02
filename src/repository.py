@@ -71,6 +71,17 @@ class Repository:
         except Exception as e:
             raise Exception('Error: ', e)
 
+    @staticmethod
+    def get_deposite_amount(bank_acc_no):
+        try:
+            conn = Repository.connect_db()
+            c = conn.cursor()
+            rows = c.execute('select * from Deposits where accountNum=?', (bank_acc_no, ))
+            # print("Row Values:",rows)
+            return rows
+        except Exception as e:
+            raise Exception('Error: ', e)
+
 
     # @staticmethod
     # def create_loan_acc(loan_given, time_period, ints_rate, bank_acc_no):

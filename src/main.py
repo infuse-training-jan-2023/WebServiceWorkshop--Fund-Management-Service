@@ -18,6 +18,14 @@ def create_account():
         return Response("{'error': 'Error adding the item'}", mimetype='application/json', status=500)
     return Response(json.dumps(add_items), mimetype='application/json', status = 201)
 
+@app.route('/Account/Get/<int:acc_num>', methods = ['GET'])
+def get_account_details(acc_num):
+    items = actions.get_account_details(acc_num)
+    print(items)
+    return Response(json.dumps(items), mimetype='application/json', status=200)
+
+
+
 @app.route('/Account/All', methods = ['GET'])
 def get_all_account_details():
     items = actions.get_all_account_details()
@@ -31,6 +39,14 @@ def deposit_amount():
     acc_no = request_data["accountNum"]
     amount = request_data["amount"]
     items = actions.deposite_amount(acc_no, amount)
+    print(items)
+    return Response(json.dumps(items), mimetype='application/json', status=200)
+
+@app.route('/Deposit/Get', methods = ['POST'])
+def get_all_deposit_amount():
+    request_data = request.get_json()
+    acc_no = request_data["accountNum"]
+    items = actions.get_deposite_amount(acc_no)
     print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
