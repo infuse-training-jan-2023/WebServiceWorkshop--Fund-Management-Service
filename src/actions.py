@@ -160,7 +160,7 @@ class Actions:
 					}
 				)
 			print(res)
-			res.append({"Sum of Deposits": sum })
+			res.append({"Sum of Deposit": sum })
 			return res
 		except Exception as e:
 			print(e)
