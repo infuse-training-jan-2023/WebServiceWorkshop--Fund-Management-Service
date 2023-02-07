@@ -10,6 +10,7 @@ class Repository:
 	def connect_db():
 		return sqlite3.connect(Repository.DBPATH)
 
+
 	@staticmethod
 	def add_loan_account(loan_amt, time_period, interest_rate, account_num):
 		try:
@@ -33,6 +34,7 @@ class Repository:
 		except Exception as e:
 			raise Exception("Error: ", e)
 
+
 	@staticmethod
 	def get_loan_account(id):
 		try:
@@ -42,6 +44,7 @@ class Repository:
 			return row
 		except Exception as e:
 			raise Exception("Error: ", e)
+
 
 	@staticmethod
 	def get_all_loan_accounts():
@@ -53,6 +56,7 @@ class Repository:
 		except Exception as e:
 			raise Exception("Error: ", e)
 
+
 	@staticmethod
 	def get_all_loan_ammount_sum():
 		try:
@@ -62,6 +66,7 @@ class Repository:
 			return row
 		except Exception as e:
 			raise Exception("Error: ", e)
+
 
 	@staticmethod
 	def add_loan_deposit(deposit_amt, loan_id):
@@ -94,6 +99,7 @@ class Repository:
 		except Exception as e:
 			raise Exception("Error: ", e)
 
+
 	@staticmethod
 	def get_all_loan_deposit_sum():
 		try:
@@ -103,6 +109,7 @@ class Repository:
 			return row
 		except Exception as e:
 			raise Exception("Error: ", e)
+
 
 	@staticmethod
 	def create_account(name, email, mob, city):
@@ -123,6 +130,7 @@ class Repository:
 		except Exception as e:
 			raise Exception('Error: ', e)
 
+
 	@staticmethod
 	def get_account_details(bank_acc_no):
 		try:
@@ -134,6 +142,7 @@ class Repository:
 		except Exception as e:
 			raise Exception('Error: ',e)
 
+
 	@staticmethod
 	def get_all_account_details():
 		try:
@@ -144,6 +153,7 @@ class Repository:
 			return rows
 		except Exception as e:
 			raise Exception('Error: ',e)
+
 
 	@staticmethod
 	def deposite_amount(bank_acc_no, amount):
@@ -166,6 +176,7 @@ class Repository:
 		except Exception as e:
 			raise Exception('Error: ', e)
 
+
 	@staticmethod
 	def get_deposite_amount(bank_acc_no):
 		try:
@@ -176,6 +187,7 @@ class Repository:
 			return rows
 		except Exception as e:
 			raise Exception('Error: ', e)
+
 
 
 	@staticmethod

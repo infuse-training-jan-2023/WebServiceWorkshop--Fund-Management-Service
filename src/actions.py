@@ -4,6 +4,7 @@ class Actions:
 	def __init__(self) -> None:
 		self.item_repo = Repository()
 
+
 	def add_loan_account(self, loan_amt, time_period, interest_rate, account_num):
 		try:
 			loan_account = self.item_repo.add_loan_account(loan_amt, time_period, interest_rate, account_num)
@@ -11,6 +12,7 @@ class Actions:
 		except Exception as e:
 			print(e)
 			return {}
+
 
 	def get_loan_account(self, id):
 		try:
@@ -33,6 +35,7 @@ class Actions:
 			print(e)
 			return {}
 
+
 	def get_all_loan_accounts(self):
 		try:
 			items = self.item_repo.get_all_loan_accounts()
@@ -54,6 +57,7 @@ class Actions:
 			print(e)
 			return {}
 
+
 	def get_all_loan_ammount_sum(self):
 		try:
 			item = self.item_repo.get_all_loan_ammount_sum()
@@ -67,6 +71,7 @@ class Actions:
 			print(e)
 			return {}
 
+
 	def add_loan_deposit(self, deposit_amt, loan_id):
 		try:
 			loan_deposit = self.item_repo.add_loan_deposit(deposit_amt, loan_id)
@@ -74,6 +79,7 @@ class Actions:
 		except Exception as e:
 			print(e)
 			return {}
+
 
 	def get_all_loan_deposit_sum(self):
 		try:
@@ -88,6 +94,7 @@ class Actions:
 			print(e)
 			return {}
 
+
 	def create_account(self, name, email, mob, city):
 		try:
 			item = self.item_repo.create_account(name, email, mob, city)
@@ -95,6 +102,7 @@ class Actions:
 		except Exception as e:
 			print(e)
 			return {}
+
 
 	def get_account_details(self, bank_acc_no):
 		try:
@@ -116,6 +124,7 @@ class Actions:
 			print(e)
 			return {}
 
+
 	def get_all_account_details(self):
 		try:
 			items = self.item_repo.get_all_account_details()
@@ -136,6 +145,7 @@ class Actions:
 			print(e)
 			return {}
 
+
 	def deposite_amount(self, bank_acc_no,amount):
 		try:
 			item = self.item_repo.deposite_amount(bank_acc_no, amount)
@@ -143,6 +153,7 @@ class Actions:
 		except Exception as e:
 			print(e)
 			return {}
+
 
 	def get_deposite_amount(self, bank_acc_no):
 		try:
@@ -165,6 +176,7 @@ class Actions:
 		except Exception as e:
 			print(e)
 			return {}
+
 
 	def delete_user(self, bank_acc_no):
 		try:

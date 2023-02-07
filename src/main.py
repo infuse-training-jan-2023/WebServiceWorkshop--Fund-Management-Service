@@ -12,6 +12,7 @@ actions = Actions()
 def welcome():
 	return "Fund Management Service"
 
+
 @app.route('/loan/add', methods = ['POST'])
 def add_loan_account():
 	request_data = request.get_json()
@@ -24,6 +25,7 @@ def add_loan_account():
 		return Response("{'error': 'Error addding the item'}", mimetype='application/json', status=500)
 	return Response(json.dumps(added_item), mimetype='application/json', status=201)
 
+
 @app.route('/loan/get/<int:id>', methods = ['GET'])
 def get_loan_account(id):
 	item = item_actions.get_loan_account(id)
@@ -31,10 +33,12 @@ def get_loan_account(id):
 		return Response("{'error': 'ID doesn't exist'}", mimetype='application/json', status=404)
 	return Response(json.dumps(item), mimetype='application/json', status=200)
 
+
 @app.route('/loan/getall', methods = ['GET'])
 def get_all_loan_accunts():
 	items = item_actions.get_all_loan_accounts()
 	return Response(json.dumps(items), mimetype='application/json', status=200)
+
 
 @app.route('/loan/getSum', methods = ['GET'])
 def get_all_loan_ammount_sum():
@@ -42,6 +46,7 @@ def get_all_loan_ammount_sum():
 	if item == []:
 		return Response("{'error': 'No Loan Accounts found'}", mimetype='application/json', status=404)
 	return Response(json.dumps(item), mimetype='application/json', status=200)
+
 
 @app.route('/loanDeposit/add', methods = ['POST'])
 def add_loan_deposit():
@@ -53,12 +58,14 @@ def add_loan_deposit():
 		return Response("{'error': 'Error addding the item'}", mimetype='application/json', status=500)
 	return Response(json.dumps(added_item), mimetype='application/json', status=201)
 
+
 @app.route('/loanDeposit/getSum', methods = ['GET'])
 def get_all_loan_deposit_sum():
 	item = item_actions.get_all_loan_deposit_sum()
 	if item == []:
 		return Response("{'error': 'No Loan Deposits found'}", mimetype='application/json', status=404)
 	return Response(json.dumps(item), mimetype='application/json', status=200)
+
 
 @app.route('/Account/Add', methods = ['POST'])
 def create_account():
@@ -72,6 +79,7 @@ def create_account():
         return Response("{'error': 'Error adding the item'}", mimetype='application/json', status=500)
     return Response(json.dumps(add_items), mimetype='application/json', status = 201)
 
+
 @app.route('/Account/Get/<int:acc_num>', methods = ['GET'])
 def get_account_details(acc_num):
     items = actions.get_account_details(acc_num)
@@ -80,11 +88,13 @@ def get_account_details(acc_num):
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
+
 @app.route('/Account/All', methods = ['GET'])
 def get_all_account_details():
     items = actions.get_all_account_details()
     print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
+
 
 @app.route('/Deposit', methods = ['POST'])
 def deposit_amount():
@@ -97,11 +107,13 @@ def deposit_amount():
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
+
 @app.route('/Deposit/Get/<int:acc_num>', methods = ['GET'])
 def get_all_deposit_amount(acc_num):
     items = actions.get_deposite_amount(acc_num)
     # print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
+
 
 @app.route('/Delete', methods = ['POST'])
 def delete_user():
