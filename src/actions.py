@@ -146,7 +146,7 @@ class Actions:
 			return {}
 
 
-	def deposite_amount(self, bank_acc_no,amount):
+	def deposit_amount(self, bank_acc_no,amount):
 		try:
 			item = self.item_repo.deposite_amount(bank_acc_no, amount)
 			return item
@@ -155,7 +155,7 @@ class Actions:
 			return {}
 
 
-	def get_deposite_amount(self, bank_acc_no):
+	def get_deposit_amount(self, bank_acc_no):
 		try:
 			item = self.item_repo.get_deposite_amount(bank_acc_no)
 			res = []
@@ -180,8 +180,8 @@ class Actions:
 
 	def delete_user(self, bank_acc_no):
 		try:
-			items = self.item_repo.delete_user(bank_acc_no)
-			return items
+			deletig_user = self.item_repo.delete_user(bank_acc_no)
+			return deletig_user
 		except Exception as e:
 			print(e)
 			return{}

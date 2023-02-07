@@ -42,7 +42,7 @@ def get_all_loan_accunts():
 
 @app.route('/loan/getSum', methods = ['GET'])
 def get_all_loan_ammount_sum():
-	item = item_actions.get_all_loan_ammount_sum()
+	item = item_actions.get_all_loan_amount_sum()
 	if item == []:
 		return Response("{'error': 'No Loan Accounts found'}", mimetype='application/json', status=404)
 	return Response(json.dumps(item), mimetype='application/json', status=200)
@@ -80,19 +80,17 @@ def create_account():
     return Response(json.dumps(add_items), mimetype='application/json', status = 201)
 
 
-@app.route('/Account/Get/<int:acc_num>', methods = ['GET'])
+@app.route('/Account/<int:acc_num>', methods = ['GET'])
 def get_account_details(acc_num):
     items = actions.get_account_details(acc_num)
-    print(items)
     if items == {}:
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 
-@app.route('/Account/All', methods = ['GET'])
+@app.route('/Account', methods = ['GET'])
 def get_all_account_details():
     items = actions.get_all_account_details()
-    print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 
@@ -102,16 +100,14 @@ def deposit_amount():
     acc_no = request_data["accountNum"]
     amount = request_data["amount"]
     items = actions.deposite_amount(acc_no, amount)
-    print(items)
     if items == {}:
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 
-@app.route('/Deposit/Get/<int:acc_num>', methods = ['GET'])
+@app.route('/Deposit/<int:acc_num>', methods = ['GET'])
 def get_all_deposit_amount(acc_num):
     items = actions.get_deposite_amount(acc_num)
-    # print(items)
     return Response(json.dumps(items), mimetype='application/json', status=200)
 
 
@@ -120,7 +116,6 @@ def delete_user():
     request_data = request.get_json()
     acc_no = request_data["accountNum"]
     items = actions.delete_user(acc_no)
-    print(items)
     if items == {}:
         return Response("{'Error':'Account not Found'}", mimetype='application/json', status=404)
     return Response(json.dumps(items), mimetype='application/json', status=200)
