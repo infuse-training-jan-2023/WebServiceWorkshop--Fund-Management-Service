@@ -20,15 +20,15 @@ class Actions:
 			res = []
 			for x in item:
 				res.append({
-					'loanID': x[0],
-					'loanAmt': x[1],
-					'timePeriod': x[2],
-					'interestRate': x[3],
-					'payBackAmt': x[4],
-					'amtPaid': x[5],
-					'amtRemaining': x[6],
+					'loan_ID': x[0],
+					'loan_amount': x[1],
+					'time_period': x[2],
+					'interest_rate': x[3],
+					'payback_amount': x[4],
+					'amt_paid': x[5],
+					'amt_remaining': x[6],
 					'status': x[7],
-					'accountNum': x[8]
+					'account_number': x[8]
 				})
 			return res
 		except Exception as e:
@@ -42,15 +42,15 @@ class Actions:
 			res = []
 			for item in items:
 				res.append({
-					'loanID': item[0],
-					'loanAmt': item[1],
-					'timePeriod': item[2],
-					'interestRate': item[3],
-					'payBackAmt': item[4],
-					'amtPaid': item[5],
-					'amtRemaining': item[6],
+					'loan_ID': item[0],
+					'loan_amount': item[1],
+					'time_period': item[2],
+					'interest_rate': item[3],
+					'payback_amount': item[4],
+					'amt_paid': item[5],
+					'amt_remaining': item[6],
 					'status': item[7],
-					'accountNum': item[8]
+					'account_number': item[8]
 				})
 			return res
 		except Exception as e:
@@ -58,9 +58,9 @@ class Actions:
 			return {}
 
 
-	def get_all_loan_ammount_sum(self):
+	def get_all_loan_amount_sum(self):
 		try:
-			item = self.item_repo.get_all_loan_ammount_sum()
+			item = self.item_repo.get_all_loan_amount_sum()
 			res = []
 			for x in item:
 				res.append({
@@ -111,10 +111,10 @@ class Actions:
 			for item in items:
 				res.append(
 					{
-						'accountNum': item[0],
-						'userName': item[1],
+						'account_number': item[0],
+						'username': item[1],
 						'emailID': item[2],
-						'mobileNum': item[3],
+						'mobile_number': item[3],
 						'city': item[4],
 						'balance': item[5]
 					}
@@ -132,10 +132,10 @@ class Actions:
 			for item in items:
 				res.append(
 					{
-						'accountNum': item[0],
-						'userName': item[1],
+						'account_number': item[0],
+						'username': item[1],
 						'emailID': item[2],
-						'mobileNum': item[3],
+						'mobile_number': item[3],
 						'city': item[4],
 						'balance': item[5]
 					}
@@ -148,7 +148,7 @@ class Actions:
 
 	def deposit_amount(self, bank_acc_no,amount):
 		try:
-			item = self.item_repo.deposite_amount(bank_acc_no, amount)
+			item = self.item_repo.deposit_amount(bank_acc_no, amount)
 			return item
 		except Exception as e:
 			print(e)
@@ -157,7 +157,7 @@ class Actions:
 
 	def get_deposit_amount(self, bank_acc_no):
 		try:
-			item = self.item_repo.get_deposite_amount(bank_acc_no)
+			item = self.item_repo.get_deposit_amount(bank_acc_no)
 			res = []
 			res.append({"Account number": bank_acc_no})
 			sum = 0
@@ -166,8 +166,8 @@ class Actions:
 				sum += items[1]
 				res.append(
 					{
-						"depositID": items[0],
-						"depositAmount": items[1]
+						"deposit_ID": items[0],
+						"deposit_amount": items[1]
 					}
 				)
 			print(res)
