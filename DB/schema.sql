@@ -1,34 +1,34 @@
 PRAGMA foreign_keys = ON;
 CREATE TABLE "Accounts"(
-	"accountNum" INTEGER PRIMARY KEY AUTOINCREMENT,
-	"userName" VARCHAR [50] NOT NULL,
+	"account_number" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"username" VARCHAR [50] NOT NULL,
 	"emailID" VARCHAR [20] NOT NULL,
-	"mobileNum" VARCHAR [30] NOT NULL,
+	"mobile_number" VARCHAR [30] NOT NULL,
 	"city" VARCHAR [20] NOT NULL,
 	"balance" INTEGER NOT NULL,
 	"status" INTEGER DEFAULT 1
 );
 CREATE TABLE "Deposits"(
-	"depositID" INTEGER PRIMARY KEY AUTOINCREMENT,
-	"depositAmount" INTEGER NOT NULL,
-	"accountNum" INTEGER NOT NULL,
-	FOREIGN KEY ("accountNum") REFERENCES Accounts("accountNum")
+	"deposit_ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"deposit_amount" INTEGER NOT NULL,
+	"account_number" INTEGER NOT NULL,
+	FOREIGN KEY ("account_number") REFERENCES Accounts("account_number")
 );
 CREATE TABLE "Loans"(
-	"loanID" INTEGER PRIMARY KEY AUTOINCREMENT,
-	"loanAmt" INTEGER NOT NULL,
-	"timePeriod" INTEGER NOT NULL,
-	"interestRate" DECIMAL (3, 2) NOT NULL,
-	"payBackAmt" INTEGER NOT NULL,
-	"amtPaid" INTEGER NOT NULL,
-	"amtRemaining" INTEGER NOT NULL,
+	"loan_ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"loan_amount" INTEGER NOT NULL,
+	"time_period" INTEGER NOT NULL,
+	"interest_rate" DECIMAL (3, 2) NOT NULL,
+	"payback_amount" INTEGER NOT NULL,
+	"amt_paid" INTEGER NOT NULL,
+	"amt_remaining" INTEGER NOT NULL,
 	"status" INTEGER DEFAULT 1,
-	"accountNum" INTEGER NOT NULL,
-	FOREIGN KEY ("accountNum") REFERENCES Accounts("accountNum")
+	"account_number" INTEGER NOT NULL,
+	FOREIGN KEY ("account_number") REFERENCES Accounts("account_number")
 );
 CREATE TABLE "LoanDeposits"(
 	"loanDepositID" INTEGER PRIMARY KEY AUTOINCREMENT,
-	"depositAmount" INTEGER NOT NULL,
-	"loanID" INTEGER NOT NULL,
-	FOREIGN KEY ("loanID") REFERENCES Loans("loanID")
+	"deposit_amount" INTEGER NOT NULL,
+	"loan_ID" INTEGER NOT NULL,
+	FOREIGN KEY ("loan_ID") REFERENCES Loans("loan_ID")
 );
